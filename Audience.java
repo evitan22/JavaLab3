@@ -1,3 +1,4 @@
+import java.util.*;
 public class Audience {
     public int numberOfSeats, numberOfCabinet, audienceArea;
     private String typeOfLesson = "practice"; //механізм інкапсуляції
@@ -46,4 +47,14 @@ public class Audience {
     public int getNumberOfCabinet() {
         return numberOfCabinet;
     }
+
+    public String toString() {
+        return "This instance of class Audience is " + this.numberOfCabinet;
+    }
+
+    static final Comparator<Audience> NUMBER_COMPARE = new Comparator<Audience>() {
+        public int compare(Audience e1, Audience e2) {
+            return e1.getNumberOfCabinet()-(e2.getNumberOfCabinet());
+        }
+    };
 }
