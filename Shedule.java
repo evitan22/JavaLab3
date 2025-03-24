@@ -35,17 +35,13 @@ public class Shedule {
         }
     }
 
-    public void showSheduleForDay(String dayName) {
+    public List<SheduleItem> showSheduleForDay(String dayName) {
         List<SheduleItem> filteredList = this.shedules.stream()
             .filter(item -> item.day.equals(dayName))
             .collect(Collectors.toList()); 
 
             Collections.sort(filteredList, Comparator.comparingInt(p -> p.numberOfLesson));
-            System.out.println("You have the next shedule for " + dayName + ":");
-
-        for(SheduleItem item : filteredList) {
-            System.out.println(item.subjectName + " on the " + item.numberOfLesson + " lesson.");
-        }
+            return filteredList;
     }
 
     public void findFreeAudience(int number, String day, Audience[] allAudiences) {

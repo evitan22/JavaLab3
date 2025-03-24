@@ -1,3 +1,5 @@
+
+
 public class Main {
     public static void main(String[] args) {
         Audience a1 =  new Audience(200, 250, 34);
@@ -12,23 +14,30 @@ public class Main {
         SheduleItem[] items = {
             new SheduleItem("Prihodko", "English", "Friday", 2, audiences[0]),
             new SheduleItem("Mayer", "Programming", "Monday", 1, audiences[1]),
-            new SheduleItem("Gavrilenko", "History", "Tuesday", 4, audiences[2])
+            new SheduleItem("Gavrilenko", "History", "Tuesday", 4, audiences[2]),
+            new SheduleItem("Aboba", "C#", "Tuesday", 3, audiences[2])
         };
-        
-        MyCollection<Audience> collInstance = new MyCollection<>(audiences);
-        MyCollection<SheduleItem> collInstance2 = new MyCollection<>(items);
-        collInstance.show();
-        System.out.println("-------------------------------------");
-        collInstance2.show();
-        System.out.println("-------------------------------------");
-        System.out.println(collInstance.findItem(Audience::getNumberOfCabinet, 3));
-        System.out.println("-------------------------------------");
-        collInstance.sort(Audience.NUMBER_COMPARE);
-        collInstance.show();
-        System.out.println("-------------------------------------");
-        System.out.println(collInstance2.findItem(SheduleItem::getSubjectName, "English"));
-        System.out.println("-------------------------------------");
-        collInstance2.sort(SheduleItem.NUMBER_OF_LESSON__COMPARATOR);
-        collInstance2.show();
+
+        // MyCollection<Audience> collInstance = new MyCollection<>(audiences);
+        // MyCollection<SheduleItem> collInstance2 = new MyCollection<>(items);
+        // collInstance.show();
+        // System.out.println("-------------------------------------");
+        // collInstance2.show();
+        // System.out.println("-------------------------------------");
+        // System.out.println(collInstance.findItem(Audience::getNumberOfCabinet, 3));
+        // System.out.println("-------------------------------------");
+        // collInstance.sort(Audience.NUMBER_COMPARE);
+        // collInstance.show();
+        // System.out.println("-------------------------------------");
+        // System.out.println(collInstance2.findItem(SheduleItem::getSubjectName, "English"));
+        // System.out.println("-------------------------------------");
+        // collInstance2.sort(SheduleItem.NUMBER_OF_LESSON__COMPARATOR);
+        // collInstance2.show();
+        // System.out.println("-------------------------------------");
+        // collInstance2.sort(SheduleItem.DAYS__COMPARATOR);
+        // collInstance2.show();
+
+        MapStore mapchik = new MapStore(items);
+        mapchik.showMap();
     }
 }
