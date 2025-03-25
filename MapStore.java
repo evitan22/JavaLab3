@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MapStore {
     Map<String, List<SheduleItem>> store = new HashMap<>(); 
@@ -36,5 +37,62 @@ public class MapStore {
         for (String key : list) {
             System.out.println("Key: " + key + " --> Value: " + store.get(key));
         }
+    }
+
+    public void sortWithAnonymousClass() {
+        for (List<SheduleItem> list : this.store.values()) {
+            Collections.sort(list, new Comparator<SheduleItem>() {
+                public int compare(SheduleItem p1, SheduleItem p2) {
+                    return p2.numberOfLesson-p1.numberOfLesson;
+                }
+            });
+        }
+    }
+
+    public void sortWithLyambda() {
+        for (List<SheduleItem> list : this.store.values()) {
+            list.sort((p1, p2) -> p2.numberOfLesson-p1.numberOfLesson);
+        }
+    }
+
+    public void sortWithMethod() {
+        for (List<SheduleItem> list : this.store.values()) {
+            list.sort(Comparator.comparingInt(SheduleItem::getNumberOfLesson).reversed());
+        }
+    }
+
+    public void findItem(String expectedValue) {
+        List<SheduleItem> allItems = this.store.values()
+            .stream()
+            .flatMap(List::stream)
+            .filter(item -> item.subjectName.equals(expectedValue))
+            .collect(Collectors.toList());
+        for (SheduleItem i : allItems) {
+            System.out.println(i);
+        }
+    }
+
+    public void removeItems(String expectedValue) {
+        Set<String> keys = store.keySet();
+
+        for (String key : keys) {
+            List<SheduleItem> cuttedList = store.get(key)
+                .stream()
+                .filter(i -> i.subjectName.equals(expectedValue))
+                .collect(Collectors.toList());
+            this.store.put(key, cuttedList);
+        }
+    }
+
+    public void getSum() {
+        List<Integer> allItems = this.store.values()
+            .stream()
+            .flatMap(List::stream)
+            .map(i -> i.audience.numberOfSeats)
+            .collect(Collectors.toList());
+
+        int sum = allItems.stream()
+            .reduce(0, (a, b) -> a+b);
+        System.out.println(sum);
     }
 }

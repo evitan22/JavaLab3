@@ -45,4 +45,8 @@ public class SheduleItem {
             return 0;
         }
     };
+
+    public int getNumberOfLesson() {
+        return numberOfLesson;
+    }
 }
