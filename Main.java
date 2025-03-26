@@ -13,7 +13,7 @@ public class Main {
             new SheduleItem("Prihodko", "English", "Friday", 2, audiences[0]),
             new SheduleItem("Tytynuk", "English", "Thursday", 5, audiences[3]),
             new SheduleItem("Mayer", "Programming", "Monday", 4, audiences[1]),
-            new SheduleItem("Volochkov", "Sport", "Monday", 1, audiences[4]),
+            new SheduleItem("Volochkov", "Aerobica", "Monday", 4, audiences[4]),
             new SheduleItem("Gavrilenko", "History", "Tuesday", 4, audiences[2]),
             new SheduleItem("Aboba", "C#", "Tuesday", 3, audiences[2])
         };

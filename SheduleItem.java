@@ -19,7 +19,7 @@ public class SheduleItem {
     }
 
     public String toString() {
-        return "This instance of class SheduleItem with lesson " + this.numberOfLesson + " on " + this.day;
+        return "This instance of class SheduleItem with " + this.subjectName + " " + this.numberOfLesson + " on " + this.day;
     }
 
     static final Comparator<SheduleItem> NUMBER_OF_LESSON__COMPARATOR = new Comparator<SheduleItem>() {

@@ -43,7 +43,8 @@ public class MapStore {
         for (List<SheduleItem> list : this.store.values()) {
             Collections.sort(list, new Comparator<SheduleItem>() {
                 public int compare(SheduleItem p1, SheduleItem p2) {
-                    return p2.numberOfLesson-p1.numberOfLesson;
+                    int orderCompare = p2.numberOfLesson-p1.numberOfLesson;
+                    return orderCompare != 0 ? orderCompare : p1.subjectName.compareTo(p2.subjectName);
                 }
             });
         }
@@ -51,16 +52,20 @@ public class MapStore {
 
     public void sortWithLyambda() {
         for (List<SheduleItem> list : this.store.values()) {
-            list.sort((p1, p2) -> p2.numberOfLesson-p1.numberOfLesson);
+            list.sort((p1, p2) -> {
+                int orderCompare = p2.numberOfLesson-p1.numberOfLesson;
+                return orderCompare != 0 ? orderCompare : p1.subjectName.compareTo(p2.subjectName);
+            });
         }
     }
 
     public void sortWithMethod() {
         for (List<SheduleItem> list : this.store.values()) {
-            list.sort(Comparator.comparingInt(SheduleItem::getNumberOfLesson).reversed());
+            list.sort(Comparator.comparingInt(SheduleItem::getNumberOfLesson).thenComparing((SheduleItem p) -> p.subjectName).reversed());
         }
     }
 
+    //3.3.1
     public void findItem(String expectedValue) {
         List<SheduleItem> allItems = this.store.values()
             .stream()
@@ -72,6 +77,7 @@ public class MapStore {
         }
     }
 
+    //3.3.2
     public void removeItems(String expectedValue) {
         Set<String> keys = store.keySet();
 
@@ -84,14 +90,12 @@ public class MapStore {
         }
     }
 
+    //3.3.3
     public void getSum() {
-        List<Integer> allItems = this.store.values()
+        int sum = this.store.values()
             .stream()
             .flatMap(List::stream)
             .map(i -> i.audience.numberOfSeats)
-            .collect(Collectors.toList());
-
-        int sum = allItems.stream()
             .reduce(0, (a, b) -> a+b);
         System.out.println(sum);
     }

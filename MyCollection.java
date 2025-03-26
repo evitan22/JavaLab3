@@ -12,12 +12,14 @@ public class MyCollection {
         this.myList.stream().forEach(a -> System.out.println(a));
     }
 
+    //3.1 Відшукати об'єкт, який відповідає заданим вимогам
     public Audience findItem(int expectedValue) {
         return this.myList.stream().filter(item -> item.getNumberOfCabinet() == expectedValue)
         .findFirst()
         .orElse(null);
     }
 
+    //3.2 сортування
     public void sortWithAnonimClass() {
         Collections.sort(this.myList, new Comparator<Audience>() {
             public int compare(Audience e1, Audience e2) {
@@ -34,6 +36,7 @@ public class MyCollection {
         myList.sort(Comparator.comparingInt(Audience::getNumberOfCabinet));
     }
 
+    //3.1.5 Виконувати визначення середнього значення кількісної ознаки об’єкта
     public void getAverageNumber() {
         List<Integer> l = this.myList.stream()
             .map(Audience::getNumberOfSeats)
